@@ -52,7 +52,7 @@ use assets\Goods;
                 setTimeout(function () {
                     $('.thanks-modal').removeClass('visible')
                     $('.thanks-modal').addClass('hidden')
-                    window.location.replace('/basket/')
+                    // window.location.replace('/basket/')
                 },3000)
             });
 
