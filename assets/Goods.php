@@ -6,7 +6,7 @@ class Goods
 {
     public function getItems($sql, $catId = 0)
     {
-        $link = mysqli_connect("localhost", "root", "", "im");
+        $link = mysqli_connect("localhost", "root", "rooter123", "im");
         mysqli_set_charset($link, "utf8");
 
         if ($link !== false) {
@@ -16,7 +16,7 @@ class Goods
 
     public function setItems($sql)
     {
-        $link = mysqli_connect("localhost", "root", "", "im");
+        $link = mysqli_connect("localhost", "root", "rooter123", "im");
         mysqli_set_charset($link, "utf8");
         $link->query($sql);
     }

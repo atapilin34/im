@@ -6,7 +6,7 @@ use assets\Goods;
 session_start();
 $arrItems=[];
 if ($_REQUEST) {
-echo '<pre>';var_dump( $_SESSION['$arrItems']);
+if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; return; }
     $arrItems = array('id'=>$_REQUEST['ID'],'name'=>$_REQUEST['Name'],'price'=>$_REQUEST['Price'],'quantity'=>intval($_REQUEST['Quantity']), 'img'=>$_REQUEST['Img']);
     $counter = 0;
     if (!$_SESSION['$arrItems']) {
@@ -35,11 +35,11 @@ echo '<pre>';var_dump( $_SESSION['$arrItems']);
             $goodsImg = $goods['img'];
 
             $basketItem = new Goods();
-            $result = $basketItem->getItems("SELECT * FROM Goods WHERE ID=$goodsId");
+            $result = $basketItem->getItems("SELECT * FROM Goods WHERE ID={$goodsId}");
             while ($row = mysqli_fetch_array($result)) :
                 $count = $row['Amount'];
                 $count--;
-                $basketItem->setItems("UPDATE `Goods` SET `Amount` = $count  WHERE `Goods`.`ID` = $goodsId");
+                $basketItem->setItems("UPDATE `Goods` SET `Amount` = $count  WHERE `Goods`.`ID` = {$goodsId}");
                 ?>
             <div class="item">
                 <span>
@@ -63,8 +63,13 @@ echo '<pre>';var_dump( $_SESSION['$arrItems']);
             </div>
             <? endwhile; ?>
             <? endforeach; ?>
+            <button class="clear-basket">Очистить корзину</button>
         </div>
     </div>
 </div>
-
+    <script>
+        $('.clear-basket').on('click', function (){
+            $.post( "/basket/", {"CLEAR":"YES"})
+        })
+    </script>
 <? include_once $_SERVER['DOCUMENT_ROOT'].'/footer.php';?>
