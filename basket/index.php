@@ -5,6 +5,7 @@ use assets\Goods;
 <?
 session_start();
 $arrItems=[];
+var_dump($_REQUEST,$_POST);
 if ($_REQUEST) {
 
     $arrItems = array('id'=>$_REQUEST['ID'],'name'=>$_REQUEST['Name'],'price'=>$_REQUEST['Price'],'quantity'=>intval($_REQUEST['Quantity']), 'img'=>$_REQUEST['Img']);
