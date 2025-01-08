@@ -25,7 +25,7 @@ if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; return; }
 
         <div class="roulone">
             <?
-            if (empty($_SESSION['$arrItems'])) die;
+            if (empty($_SESSION['$arrItems'])) echo 'В корзине пока пусто, давайте исправим это'; die;
             $arrGoods = $_SESSION['$arrItems'];
             foreach ($arrGoods as $goods):
             $goodsId = $goods['id'];
@@ -70,6 +70,12 @@ if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; return; }
     <script>
         $('.clear-basket').on('click', function (){
             $.post( "/basket/", {"CLEAR":"YES"})
+                .done(function( data ) {
+                    $('.roulone').html('')
+                    setTimeout(function () {
+                        window.location.replace('/')
+                    },2000)
+                })
         })
     </script>
 <? include_once $_SERVER['DOCUMENT_ROOT'].'/footer.php';?>
