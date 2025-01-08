@@ -6,7 +6,7 @@ use assets\Goods;
 session_start();
 $arrItems=[];
 if ($_REQUEST) {
-var_dump( $_SESSION['$arrItems']);
+echo '<pre>';var_dump( $_SESSION['$arrItems']);
     $arrItems = array('id'=>$_REQUEST['ID'],'name'=>$_REQUEST['Name'],'price'=>$_REQUEST['Price'],'quantity'=>intval($_REQUEST['Quantity']), 'img'=>$_REQUEST['Img']);
     $counter = 0;
     if (!$_SESSION['$arrItems']) {
@@ -19,7 +19,6 @@ var_dump( $_SESSION['$arrItems']);
     } else {
         $_SESSION['$arrItems'][$_REQUEST['ID']] = $arrItems;
     }
-var_dump( $_SESSION['$arrItems']);
 }
 ?>
 <? include_once $_SERVER['DOCUMENT_ROOT'].'/header.php';?>
