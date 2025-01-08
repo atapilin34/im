@@ -44,7 +44,7 @@ use assets\Goods;
     let amount = $('#amount').html()-1;
     buyBtn.on('click', function() {
 
-        $.post( "/basket/index.php", {'ID':id, 'Name':name,'Price':price,'Quantity':quantity, 'Img': img  })
+        $.get( "/basket/index.php", {'ID':id, 'Name':name,'Price':price,'Quantity':quantity, 'Img': img  })
             .done(function( data ) {
                 $('#amount').html(amount)
                 $('.thanks-modal').removeClass('hidden')
