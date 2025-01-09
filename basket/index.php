@@ -19,7 +19,7 @@ if ($_REQUEST) {
         $_SESSION['$arrItems'][$_REQUEST['ID']] = $arrItems;
     }
 }
-else if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; }
+else if ($_REQUEST["CLEAR"]) { echo 'CLEAR'; }
 ?>
 <? include_once $_SERVER['DOCUMENT_ROOT'].'/header.php';?>
 
