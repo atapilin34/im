@@ -6,7 +6,7 @@ use assets\Goods;
 session_start();
 $arrItems=[];
 if ($_REQUEST) {
-if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; return; }
+if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; }
     $arrItems = array('id'=>$_REQUEST['ID'],'name'=>$_REQUEST['Name'],'price'=>$_REQUEST['Price'],'quantity'=>intval($_REQUEST['Quantity']), 'img'=>$_REQUEST['Img']);
     $counter = 0;
     if (!$_SESSION['$arrItems']) {
@@ -25,7 +25,7 @@ if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; return; }
 
         <div class="roulone">
             <?
-            if (empty($_SESSION['$arrItems'])) echo 'В корзине пока пусто, давайте исправим это'; die;
+            if (empty($_SESSION['$arrItems'])) { echo 'В корзине пока пусто, давайте исправим это'; die;}
             $arrGoods = $_SESSION['$arrItems'];
             foreach ($arrGoods as $goods):
             $goodsId = $goods['id'];
@@ -72,6 +72,7 @@ if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; return; }
             $.post( "/basket/", {"CLEAR":"YES"})
                 .done(function( data ) {
                     $('.roulone').html('')
+                    $('.roulone').html('В корзине пока пусто, давайте исправим это')
                     setTimeout(function () {
                         window.location.replace('/')
                     },2000)
