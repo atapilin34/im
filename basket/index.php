@@ -6,7 +6,6 @@ use assets\Goods;
 session_start();
 $arrItems=[];
 if ($_REQUEST) {
-if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; }
     $arrItems = array('id'=>$_REQUEST['ID'],'name'=>$_REQUEST['Name'],'price'=>$_REQUEST['Price'],'quantity'=>intval($_REQUEST['Quantity']), 'img'=>$_REQUEST['Img']);
     $counter = 0;
     if (!$_SESSION['$arrItems']) {
@@ -20,6 +19,7 @@ if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; }
         $_SESSION['$arrItems'][$_REQUEST['ID']] = $arrItems;
     }
 }
+else if ($_REQUEST["CLEAR"]) { $_SESSION['$arrItems'] = []; }
 ?>
 <? include_once $_SERVER['DOCUMENT_ROOT'].'/header.php';?>
 
